@@ -18,7 +18,8 @@ namespace pryCalvetEtapa1
         {
             InitializeComponent();
             Dibujito = new Bitmap(pctDibujo.Width, pctDibujo.Height);
-            guardarFirma = new Bitmap(pctDibujo.Width, pctDibujo.Height);
+            pctDibujo.Image = Dibujito;
+
         }
 
         bool Clickeando;    //sirve para saber si estamos clickeando, devuelve true o false
@@ -57,8 +58,6 @@ namespace pryCalvetEtapa1
                 }
             }
         }
-
-        public Bitmap guardarFirma; //variable donde se guarda la firma
         
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -73,7 +72,7 @@ namespace pryCalvetEtapa1
                         }
                         string archivo = $"{DateTime.Now.ToString("yyyy-MM-dd hhmmss")}.png"; //nombre del archivo es el dia y hora
                         string destino = Path.Combine(ruta, archivo); //Combinamos ruta y nomb del archivo
-                        guardarFirma.Save(destino, System.Drawing.Imaging.ImageFormat.Png); //Se guarda
+                        Dibujito.Save(destino, System.Drawing.Imaging.ImageFormat.Png); //Se guarda
                         MessageBox.Show("¡Firma guardada con exito!");
                         pctDibujo.Invalidate();  //limpiamos dibujo                  
             }
